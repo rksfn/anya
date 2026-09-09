@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ANYA</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <button id="enabled" class="mast" type="button" aria-pressed="true">
+      <svg class="mark" viewBox="0 0 128 128" aria-hidden="true">
+        <path class="cell" d="M50 14 61 25 48 60H24l-7-9 14-31zM78 14 67 25l13 35h24l7-9-14-31zM22 68h24l8 9-13 35H20l-7-10zM106 68H82l-8 9 13 35h21l7-10zM49 58h30l10 8-10 9H49l-10-9z"/>
+        <path class="seam" d="m47 58 4 4m30-4-4 4M47 72l4-3m30 3-4-3"/>
+      </svg>
+      <span class="mast-status">
+        <strong id="status-word">On watch</strong>
+        <span id="status-hint">Click to pause</span>
+      </span>
+    </button>
+
+    <section aria-labelledby="providers-title">
+      <h1 id="providers-title" class="visually-hidden">Notifications by provider</h1>
+      <div id="providers" class="provider-list"></div>
+    </section>
+
+    <footer>
+      <div class="footer-action">
+        <button id="test-notification" class="test-button" type="button">Test notification</button>
+        <span aria-hidden="true"></span>
+      </div>
+      <p id="test-result" role="status"></p>
+    </footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

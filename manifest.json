@@ -1,0 +1,67 @@
+{
+  "manifest_version": 3,
+  "name": "ANYA",
+  "version": "0.1.0",
+  "description": "AI needs your attention. You decide whether to give it.",
+  "permissions": ["notifications", "storage", "tabs"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "https://grok.com/*",
+    "https://x.com/i/grok*",
+    "https://www.perplexity.ai/*",
+    "https://perplexity.ai/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "ANYA — AI needs your attention",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://grok.com/*",
+        "https://x.com/i/grok*",
+        "https://www.perplexity.ai/*",
+        "https://perplexity.ai/*"
+      ],
+      "js": ["shared/streams.js", "intercept.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://grok.com/*",
+        "https://x.com/i/grok*",
+        "https://www.perplexity.ai/*",
+        "https://perplexity.ai/*"
+      ],
+      "js": ["shared/providers.js", "shared/classifier.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
