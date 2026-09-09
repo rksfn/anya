@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ANYA promo marquee</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 1400px; height: 560px; overflow: hidden; }
+    body {
+      display: grid;
+      grid-template-columns: 560px 1fr;
+      background: #f2c718;
+      color: #101010;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .mark {
+      display: grid;
+      place-items: center;
+    }
+    svg { width: 220px; height: 220px; }
+    .copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 80px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 92px;
+      letter-spacing: -.04em;
+      line-height: .9;
+    }
+    p {
+      margin: 22px 0 0;
+      font-size: 28px;
+      color: #5f4f00;
+    }
+  </style>
+</head>
+<body>
+  <div class="mark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" aria-hidden="true">
+      <path fill="#101010" d="M50 14 61 25 48 60H24l-7-9 14-31zM78 14 67 25l13 35h24l7-9-14-31zM22 68h24l8 9-13 35H20l-7-10zM106 68H82l-8 9 13 35h21l7-10zM49 58h30l10 8-10 9H49l-10-9z"/>
+      <path fill="none" stroke="#f2c718" stroke-width="3" stroke-linecap="square" d="m47 58 4 4m30-4-4 4M47 72l4-3m30 3-4-3"/>
+    </svg>
+  </div>
+  <div class="copy">
+    <h1>ANYA</h1>
+    <p>AI needs your attention.</p>
+  </div>
+</body>
+</html>

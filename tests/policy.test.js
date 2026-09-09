@@ -66,6 +66,7 @@ test("notification copy uses the product promise and names the provider", () => 
   assert.equal(testOptions.message, "Test successful. Click to return to this tab.");
   assert.equal(options.iconUrl, "icons/notification.png");
   assert.equal(options.requireInteraction, true);
+  assert.equal(options.silent, true);
   assert.equal("contextMessage" in options, false);
   const root = path.resolve(__dirname, "..");
   const notify = fs.readFileSync(path.join(root, "icons/notification.png"));

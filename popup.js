@@ -77,7 +77,7 @@ elements.testButton.addEventListener("click", async () => {
   try {
     const result = await send({ type: "TEST_NOTIFICATION" });
     if (result?.notified) {
-      elements.testResult.textContent = "Test sent. Click it to return here.";
+      elements.testResult.textContent = "Test sent. You should hear a chime.";
     } else {
       elements.testResult.classList.add("is-error");
       elements.testResult.textContent = "Notification blocked. Allow browser notifications in system settings.";

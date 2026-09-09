@@ -26,7 +26,7 @@ Notifications can be enabled or disabled globally or per provider.
 
 1. Detect when a supported AI starts working.
 2. Detect when it finishes or appears to need input.
-3. Send a native system notification if you are not already viewing that tab.
+3. Send a native system notification if you are not already viewing that tab, with a short chime.
 4. If you click the notification, focus that browser window and tab.
 
 Detection combines provider-specific page controls, chat-stream completion, and a fallback that waits for response text to settle. A small local heuristic checks only the end of a response for direct questions or requests.
@@ -35,7 +35,7 @@ On supported pages, a page-world script wraps `fetch` so it can notice when a ch
 
 ## Privacy
 
-Detection happens locally in your browser.
+Full policy: [PRIVACY.md](PRIVACY.md). Detection happens locally in your browser.
 
 - No backend or extension-originated network requests
 - No analytics
@@ -53,7 +53,7 @@ Works in Chrome and other Chromium-based desktop browsers.
 3. Click **Load unpacked**.
 4. Select this repository folder.
 5. Refresh any supported AI tabs that were already open.
-6. Open the extension and select **Test notification**.
+6. Open the extension and select **Test notification**. You should hear a short chime.
 
 If the test does not appear, allow notifications for your browser in your operating system settings. System notifications identify the browser as the sender.
 
@@ -64,6 +64,7 @@ The extension uses plain JavaScript with no package install or build step.
 ```text
 manifest.json          Chrome Manifest V3 declaration
 background.js          settings, notifications, and tab focus
+offscreen.*            notification chime (service workers cannot play audio)
 content.js             per-tab observer and completion state machine
 intercept.js           page-world fetch probe; discards stream bytes locally
 shared/providers.js    provider adapters and selector fallbacks
@@ -82,7 +83,10 @@ node --test tests/*.test.js
 node --check background.js
 node --check content.js
 node --check intercept.js
+node --check offscreen.js
 node --check popup.js
 ```
+
+Package a Chrome Web Store zip with `scripts/package.sh`. Listing copy, screenshots, and dashboard answers are in [`store/listing.md`](store/listing.md).
 
 Provider sites can change their interfaces without notice. Detection adapters are isolated in [`shared/providers.js`](shared/providers.js) so selector changes remain local and testable.

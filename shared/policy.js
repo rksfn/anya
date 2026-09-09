@@ -17,6 +17,7 @@
         ? "Test successful. Click to return to this tab."
         : `${providerName} ${needsInput ? "is waiting for your input" : "has finished"}. Click to return.`,
       requireInteraction: true,
+      silent: true,
       priority: 2
     };
   }

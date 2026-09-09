@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ANYA privacy policy</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #101010;
+      --muted: #5c5c5c;
+      --signal: #f2c718;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--ink);
+      font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 28px;
+      background: var(--signal);
+    }
+    header strong { font-size: 14px; letter-spacing: .04em; }
+    header span { color: #5f4f00; font-size: 12px; }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 28px 80px;
+    }
+    h1 { font-size: 32px; line-height: 1.15; margin: 0 0 12px; }
+    .lede { color: var(--muted); margin: 0 0 36px; }
+    h2 { font-size: 18px; margin: 32px 0 10px; }
+    p, li { color: #222; }
+    ul { padding-left: 1.2em; }
+    a { color: #111; }
+    footer { margin-top: 48px; color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>ANYA</strong>
+    <span>Privacy policy</span>
+  </header>
+  <main>
+    <h1>Privacy policy</h1>
+    <p class="lede">ANYA (“AI Needs Your Attention”) is a browser extension. This policy describes how ANYA handles information on your device. Effective 9 September 2026.</p>
+
+    <h2>Summary</h2>
+    <p>ANYA runs locally in your browser. It has no backend, no account, no analytics, and it does not make extension-originated network requests. Conversation text is not sent to a server.</p>
+
+    <h2>Information ANYA handles</h2>
+    <p>ANYA handles only what it needs to notify you about a supported AI tab and to remember your settings.</p>
+    <ul>
+      <li><strong>Notification settings.</strong> On/off for all notifications, and on/off per supported product (ChatGPT, Claude, Gemini, Grok, Perplexity). Stored in <code>chrome.storage.local</code> on your device until you change them or uninstall ANYA.</li>
+      <li><strong>Tab URL and tab id.</strong> When a supported AI tab may need you, ANYA keeps the tab id and URL in <code>chrome.storage.session</code> so a notification click can return you to that tab. A URL may include a conversation id assigned by the AI product. This session state is not written to disk by ANYA and is cleared when the tab closes or the browser session ends.</li>
+      <li><strong>Page content on supported AI sites.</strong> On ChatGPT, Claude, Gemini, Grok, and Perplexity pages, ANYA reads visible assistant text in the page in order to detect that a reply finished and to apply a small local heuristic that looks only at the end of a response for a direct question or request. That text stays in the page. The extension worker does not store conversation content.</li>
+      <li><strong>Tab focus.</strong> ANYA checks whether you are already looking at the originating tab so it can suppress a notification you do not need.</li>
+    </ul>
+    <p>ANYA does not collect your name, email, payment information, authentication credentials, location, or a browsing history of sites other than the supported AI products you already have open.</p>
+
+    <h2>How that information is used</h2>
+    <ul>
+      <li>To show a system notification when a supported AI finishes or appears to need input, if you are not already viewing that tab.</li>
+      <li>To focus the matching window and tab when you click a notification.</li>
+      <li>To honor your global and per-product notification settings.</li>
+      <li>To show a badge on the extension icon for a tab that is ready or waiting.</li>
+    </ul>
+
+    <h2>What ANYA does not do</h2>
+    <ul>
+      <li>No backend or extension-originated network requests</li>
+      <li>No analytics, advertising, or tracking</li>
+      <li>No sale or sharing of user data</li>
+      <li>No remote code</li>
+      <li>No account</li>
+    </ul>
+    <p>On supported pages, a page-world script wraps <code>fetch</code> so ANYA can notice when a chat stream ends. It clones the response, reads that copy until it finishes, and discards the bytes. The only message it posts is a <code>STREAM_COMPLETE</code> ping, with no response text.</p>
+
+    <h2>Sharing</h2>
+    <p>ANYA does not send the information above to the developer or to any third party. System notifications are displayed by your browser and operating system.</p>
+    <p>ANYA may disclose information if required by law.</p>
+
+    <h2>Retention</h2>
+    <ul>
+      <li>Settings remain on your device until you change them or uninstall the extension.</li>
+      <li>Session tab state lasts only for the browser session and is removed when the tab closes.</li>
+      <li>Uninstalling ANYA removes its local and session storage.</li>
+    </ul>
+
+    <h2>Limited use</h2>
+    <p>ANYA uses the information described here only to provide its single purpose: notifying you when a supported web AI chat has finished or appears to need input, and returning you to that tab if you click the notification. It is not used for advertising, credit decisions, or any unrelated purpose.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, the effective date above will be updated and the revised policy will be posted at this URL.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy: <a href="https://github.com/rksfn/anya/issues">github.com/rksfn/anya/issues</a></p>
+    <footer>ANYA · AI needs your attention.</footer>
+  </main>
+</body>
+</html>

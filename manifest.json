@@ -3,7 +3,7 @@
   "name": "ANYA",
   "version": "0.1.0",
   "description": "AI needs your attention. You decide whether to give it.",
-  "permissions": ["notifications", "storage", "tabs"],
+  "permissions": ["notifications", "storage", "tabs", "offscreen"],
   "host_permissions": [
     "https://chatgpt.com/*",
     "https://chat.openai.com/*",

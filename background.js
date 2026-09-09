@@ -7,10 +7,13 @@ const DEFAULT_SETTINGS = {
   providerEnabled: Object.fromEntries(AINeedsAttention.providers.map((provider) => [provider.id, true]))
 };
 const NOTIFICATION_PREFIX = "anya:";
+const OFFSCREEN_PATH = "offscreen.html";
 
 let tabStates = {};
 let notificationTargets = {};
 let hydrated = false;
+let creatingOffscreen = null;
+let soundChannel = null;
 
 async function hydrate() {
   if (hydrated) return;
@@ -53,6 +56,41 @@ async function setBadge(tabId, phase) {
   }
 }
 
+async function setupOffscreenDocument() {
+  const offscreenUrl = chrome.runtime.getURL(OFFSCREEN_PATH);
+  const existing = await chrome.runtime.getContexts({
+    contextTypes: ["OFFSCREEN_DOCUMENT"],
+    documentUrls: [offscreenUrl]
+  });
+  if (existing.length) return;
+
+  if (creatingOffscreen) {
+    await creatingOffscreen;
+    return;
+  }
+
+  creatingOffscreen = chrome.offscreen.createDocument({
+    url: OFFSCREEN_PATH,
+    reasons: ["AUDIO_PLAYBACK"],
+    justification: "Play a short chime when an AI needs attention."
+  });
+  try {
+    await creatingOffscreen;
+  } finally {
+    creatingOffscreen = null;
+  }
+}
+
+async function playNotificationSound() {
+  try {
+    await setupOffscreenDocument();
+    if (!soundChannel) soundChannel = new BroadcastChannel("anya-sound");
+    soundChannel.postMessage({ type: "play" });
+  } catch (error) {
+    console.warn("[ANYA] notification sound failed", error);
+  }
+}
+
 async function createNotification(message, tabId, force) {
   const settings = await getSettings();
   const tabBeingViewed = !force && typeof tabId === "number" && tabId >= 0
@@ -88,6 +126,7 @@ async function createNotification(message, tabId, force) {
     return { notified: false, reason: error.message };
   }
 
+  await playNotificationSound();
   await persistSession();
   return { notified: true, notificationId };
 }
