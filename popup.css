@@ -73,15 +73,6 @@ main {
   overflow: visible;
 }
 
-.mark .cell { fill: currentColor; }
-
-.mark .seam {
-  fill: none;
-  stroke: var(--signal);
-  stroke-width: 2.5;
-  stroke-linecap: square;
-}
-
 .mast-status {
   display: grid;
   justify-items: end;
@@ -105,7 +96,6 @@ body.is-paused .mast {
 }
 
 body.is-paused .mast:hover { background: #efefef; }
-body.is-paused .mark .seam { stroke: #f7f7f7; }
 body.is-paused .mast-status,
 body.is-paused .mast-status strong { color: #555; }
 

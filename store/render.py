@@ -85,13 +85,15 @@ def main() -> None:
             if name.is_file():
                 shutil.copy(name, work / name.name)
         assemble_screenshot_1(work)
+        shutil.copy(ROOT / "icons" / "mark.svg", work / "mark.svg")
         shutil.copy(ROOT / "icons" / "notification.png", work / "notification.png")
 
-        # screenshot-2 references ../../icons/notification.png; point it at the copy.
-        shot2 = (work / "screenshot-2.html").read_text().replace(
-            "../../icons/notification.png", "notification.png"
-        )
-        (work / "screenshot-2.html").write_text(shot2)
+        # Keep temporary frame references local to the isolated render directory.
+        for frame in work.glob("*.html"):
+            html = frame.read_text()
+            html = html.replace("../../icons/mark.svg", "mark.svg")
+            html = html.replace("../../icons/notification.png", "notification.png")
+            frame.write_text(html)
 
         for html_name, png_name, size in JOBS:
             raw_png = raw / png_name

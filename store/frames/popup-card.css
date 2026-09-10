@@ -33,9 +33,7 @@
   color: #111;
 }
 
-.mark { display: block; width: 32px; height: 32px; overflow: visible; }
-.mark .cell { fill: currentColor; }
-.mark .seam { fill: none; stroke: var(--signal); stroke-width: 2.5; stroke-linecap: square; }
+.mark { display: block; width: 32px; height: 32px; }
 
 .mast-status {
   display: grid;
@@ -117,7 +115,6 @@
   background: #f7f7f7;
 }
 
-.popup.paused .mark .seam { stroke: #f7f7f7; }
 .popup.paused .mast-status,
 .popup.paused .mast-status strong { color: #555; }
 .popup.paused .switch span {

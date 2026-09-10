@@ -14,14 +14,14 @@ Fallback until Pages is enabled:
 
 **Name** (from the manifest, not editable here): ANYA
 
-**Summary** (from the manifest description): AI needs your attention. You decide whether to give it.
+**Summary** (from the manifest description): AI needs your attention. Give it as soon as you can.
 
 **Detailed description**
 
 ```
-ANYA tells you when a web AI is done, or when it is waiting for you. You decide whether to go back.
+ANYA tells you when a web AI is done, or when it is waiting for you, so you can get back as soon as you can.
 
-Give it a request, leave the tab, do something else. When the response finishes or it asks you something, you get a system notification and a short chime. Click it to return to that tab, or don't.
+Give it a request, leave the tab, do something else. When the response finishes or it asks you something, you get a system notification and a short chime. Click it to return to that tab.
 
 No scoring. No inbox. No automatic switching.
 
@@ -126,6 +126,18 @@ Run content scripts on Perplexity so ANYA can detect when a reply is generating,
 ```
 
 **Remote code:** No, I am not using remote code.
+
+Justification (required even when the answer is No):
+
+```
+ANYA does not use remote code. Every script ships in the uploaded package (background.js, content.js, intercept.js, offscreen.js, popup.js, and shared/*.js). The extension does not fetch, eval, or execute JavaScript from the network. Content scripts are declared in the manifest and injected only on the listed AI sites. The page-world fetch wrapper is local code from intercept.js: it clones chat-stream responses, discards the bytes, and posts a STREAM_COMPLETE ping with no response text.
+```
+
+**Host permissions (combined field, if the dashboard shows one box for all hosts)**
+
+```
+ANYA only runs on ChatGPT, Claude, Gemini, Grok, and Perplexity so it can detect when a reply is generating, finished, or waiting for input. Host access is limited to those product URLs (chatgpt.com, chat.openai.com, claude.ai, gemini.google.com, grok.com, x.com/i/grok, perplexity.ai, and www.perplexity.ai). ANYA does not run on other sites and does not make extension-originated network requests.
+```
 
 **Data use**
 

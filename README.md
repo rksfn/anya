@@ -1,12 +1,14 @@
 # ANYA
 
+<img src="icons/icon-128.png" width="96" height="96" alt="ANYA">
+
 **AI Needs Your Attention.**
 
 AI can work in parallel. Your attention can't.
 
-This extension notices when a web AI wants you, and tells you. You decide whether to go there.
+This extension notices when a web AI wants you, and tells you so you can get there as soon as you can.
 
-Give it a request, leave the tab, do something else. When the response finishes or it asks you something, you get a system notification. Click it to return to that tab, or don't. Close the tab if you don't care anymore.
+Give it a request, leave the tab, do something else. When the response finishes or it asks you something, you get a system notification. Click it to return to that tab.
 
 No scoring. No inbox. No automatic switching.
 
@@ -72,7 +74,8 @@ shared/classifier.js   local input-request heuristic
 shared/streams.js      chat-stream URL matching
 shared/policy.js       notification and suppression policy
 popup.*                global and per-provider settings
-icons/                 extension and notification artwork
+icons/                 generated extension and notification artwork
+scripts/generate-icons.py  single source for SVG and PNG icon assets
 tests/                 dependency-free Node tests
 ```
 

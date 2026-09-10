@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ANYA",
   "version": "0.1.0",
-  "description": "AI needs your attention. You decide whether to give it.",
+  "description": "AI needs your attention. Give it as soon as you can.",
   "permissions": ["notifications", "storage", "tabs", "offscreen"],
   "host_permissions": [
     "https://chatgpt.com/*",

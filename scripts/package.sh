@@ -21,7 +21,7 @@ cp "$root/manifest.json" \
    "$root/LICENSE" \
    "$stage"
 
-cp "$root/icons/"*.png "$stage/icons/"
+cp "$root/icons/"*.png "$root/icons/mark.svg" "$stage/icons/"
 cp "$root/shared/"*.js "$stage/shared/"
 
 # ZIP must have manifest.json at the root, not inside a folder.
